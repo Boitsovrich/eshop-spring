@@ -7,3 +7,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/shop
     username: admin
     password: qwerty
+  flyway:
+    baseline-on-migrate: true
+
+
