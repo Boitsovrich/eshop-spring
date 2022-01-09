@@ -6,31 +6,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "buckets")
-public class Bucket {
-    private static final String SEQ_NAME = "bucket_seq";
+@Table(name = "orders_details")
+public class OrderDetails {
+    private static final String SEQ_NAME = "order_details_seq";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @ManyToMany
-    @JoinTable(name = "buckets_products",
-            joinColumns = @JoinColumn(name = "bucket_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;
-
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+    private BigDecimal amount;
+    private BigDecimal price;
 
 }
