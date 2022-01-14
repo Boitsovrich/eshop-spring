@@ -8,7 +8,6 @@ public class EshopSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EshopSpringApplication.class, args);
-        System.out.println("test");
     }
 
 }
